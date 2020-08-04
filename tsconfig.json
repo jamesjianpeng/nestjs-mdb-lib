@@ -1,0 +1,11 @@
+{
+    "compilerOptions": {
+        "lib": ["es2015"],
+      "experimentalDecorators":true,
+      "declaration": true,
+      "outDir": "./dist"
+    },
+    "include": ["src/**/*"],
+    "exclude": ["node_modules", "dist", "test", "**/*spec.ts"]
+  }
+  
