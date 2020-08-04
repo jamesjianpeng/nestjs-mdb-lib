@@ -5,17 +5,14 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-exports.__esModule = true;
-var common_1 = require("@nestjs/common");
-var NestjsMdbLibService = /** @class */ (function () {
-    function NestjsMdbLibService() {
-    }
-    NestjsMdbLibService.prototype.test = function () {
+Object.defineProperty(exports, "__esModule", { value: true });
+const common_1 = require("@nestjs/common");
+let NestjsMdbLibService = class NestjsMdbLibService {
+    test() {
         return 'welcom use NestjsMdbLibModule!';
-    };
-    NestjsMdbLibService = __decorate([
-        common_1.Injectable()
-    ], NestjsMdbLibService);
-    return NestjsMdbLibService;
-}());
+    }
+};
+NestjsMdbLibService = __decorate([
+    common_1.Injectable()
+], NestjsMdbLibService);
 exports.NestjsMdbLibService = NestjsMdbLibService;
