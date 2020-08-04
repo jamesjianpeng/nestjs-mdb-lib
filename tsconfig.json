@@ -10,7 +10,7 @@
       "sourceMap": false,
       "outDir": "./dist",
       "moduleResolution": "node",
-      "baseUrl": "./lib",
+      "baseUrl": "./src",
       "strict": true,
       "experimentalDecorators": true,
       "emitDecoratorMetadata": true,
