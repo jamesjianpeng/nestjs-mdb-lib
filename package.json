@@ -1,0 +1,33 @@
+{
+  "name": "@smartblog/nestjs-mdb-lib",
+  "version": "1.0.3",
+  "description": "nestjs mongodb",
+  "main": "index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc",
+    "patch": "npm version patch",
+    "publish": "npm publish --access=public",
+    "deploy": "npm run build && npm run patch && npm run pulish"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jamesjianpeng/nestjs-mdb-lib.git"
+  },
+  "keywords": [
+    "nestjs",
+    "mongodb"
+  ],
+  "author": "jamesjianpeng",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jamesjianpeng/nestjs-mdb-lib/issues"
+  },
+  "homepage": "https://github.com/jamesjianpeng/nestjs-mdb-lib#readme",
+  "dependencies": {
+    "@nestjs/common": "^7.4.2",
+    "@nestjs/testing": "^7.4.2",
+    "rxjs": "^6.6.2",
+    "typescript": "^3.9.7"
+  }
+}
