@@ -1,6 +1,6 @@
 {
   "name": "@smartblog/nestjs-mdb-lib",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "nestjs mongodb",
   "main": "index.ts",
   "scripts": {
