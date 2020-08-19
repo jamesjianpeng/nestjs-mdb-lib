@@ -29,6 +29,9 @@ let NestjsMdbLibService = class NestjsMdbLibService {
     onModuleInit() {
         return this.options;
     }
+    async test() {
+        return 'hello, nestjs mdb lib !';
+    }
     async getClis() {
         const clis = this.options.map(async ({ url, key }) => {
             return { key, url, cli: await this.getCli(url) };

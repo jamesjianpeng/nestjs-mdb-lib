@@ -7,6 +7,7 @@ export declare class NestjsMdbLibService implements OnModuleInit {
     private cliMap;
     constructor(options: IMdbOptions);
     onModuleInit(): IMdbOptions;
+    test(): Promise<string>;
     getClis(): Promise<void>;
     getCli(url: any): Promise<MongoClient>;
     getDb(cliKey: string, db: string): Promise<Db>;
