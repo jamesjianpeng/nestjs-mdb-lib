@@ -1,7 +1,7 @@
 {
     "compilerOptions": {
       "target": "es2017",
-      "module": "commonjs",
+      "module": "ES2015",
       "declaration": true,
       "noImplicitAny": false,
       "removeComments": true,
@@ -10,7 +10,7 @@
       "sourceMap": false,
       "outDir": "./dist",
       "moduleResolution": "node",
-      "baseUrl": "./src",
+      "baseUrl": "./",
       "strict": true,
       "experimentalDecorators": true,
       "emitDecoratorMetadata": true,
@@ -18,7 +18,7 @@
       "esModuleInterop": true
 
     },
-    "include": ["src/**/*"],
+    "include": ["src/**/*", "index.ts"],
     "exclude": ["node_modules", "dist", "test", "**/*spec.ts"]
   }
   

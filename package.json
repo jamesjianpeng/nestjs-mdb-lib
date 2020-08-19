@@ -2,10 +2,10 @@
   "name": "@smartblog/nestjs-mdb-lib",
   "version": "1.0.8",
   "description": "nestjs mongodb",
-  "main": "index.ts",
+  "main": "./dist",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "tsc",
+    "build": "rimraf ./dist && tsc",
     "patch": "npm version patch",
     "publish": "npm publish --access=public",
     "deploy": "npm run build && npm run patch && npm run publish"
@@ -28,5 +28,8 @@
     "@nestjs/common": "^7.4.2",
     "@nestjs/testing": "^7.4.2",
     "rxjs": "^6.6.2"
+  },
+  "devDependencies": {
+    "rimraf": "^3.0.2"
   }
 }
