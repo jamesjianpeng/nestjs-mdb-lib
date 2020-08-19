@@ -1,0 +1,5 @@
+{
+    "mongo_sz": "mongodb://<user>:<password>@<ip>:<port>",
+    "mongo_hk": "mongodb://<user>:<password>@<ip>:<port>"
+  }
+  
