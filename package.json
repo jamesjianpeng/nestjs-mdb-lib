@@ -27,6 +27,8 @@
   "dependencies": {
     "@nestjs/common": "^7.4.2",
     "@nestjs/testing": "^7.4.2",
+    "lodash": "^4.17.20",
+    "mongodb": "^3.6.0",
     "rxjs": "^6.6.2"
   },
   "devDependencies": {
