@@ -32,6 +32,10 @@ export class NestjsMdbLibService implements OnModuleInit {
     return this.options
   }
 
+  async test () {
+    return 'hello, nestjs mdb lib !'
+  }
+
   async getClis () {
     const clis: Array<Promise<ICli>> = this.options.map(async ({ url, key }: IMdb): Promise<ICli> => {
       return  { key, url, cli: await this.getCli(url) }
