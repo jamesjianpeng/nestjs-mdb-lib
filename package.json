@@ -1,6 +1,6 @@
 {
   "name": "@smartblog/nestjs-mdb-lib",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "description": "nestjs mongodb",
   "main": "./dist",
   "scripts": {
