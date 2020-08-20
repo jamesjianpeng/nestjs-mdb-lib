@@ -8,8 +8,9 @@
     "build": "rimraf ./dist && tsc",
     "patch": "npm version patch",
     "publish": "npm publish --access=public",
-    "git:build:commit": "git add . && git commit -m 'build' && git push",
-    "deploy": "npm run build && npm run git:build:commit && npm run patch && npm run publish"
+    "git:commit:build": "git add . && git commit -m 'build' && git push",
+    "git:push:version": "git push",
+    "deploy": "npm run build && npm run git:commit:build && npm run patch && npm run publish && npm run git:push:version"
   },
   "repository": {
     "type": "git",
