@@ -18,7 +18,7 @@ import _ from 'lodash'
 
 @Injectable()
 export class NestjsMdbLibService implements OnModuleInit {
-  
+
   private dbMap: IDbMap = {}
   private cliMap: ICliMap = {}
 
@@ -50,7 +50,7 @@ export class NestjsMdbLibService implements OnModuleInit {
 
   getCli (url): Promise<MongoClient> {
     return new Promise((resolve, reject) => {
-      MongoClient.connect(url, { useNewUrlParser: true, poolSize: 30 }, (err: MongoError, cli: MongoClient) => {
+      MongoClient.connect(url, { useNewUrlParser: true, poolSize: 30, useUnifiedTopology: true }, (err: MongoError, cli: MongoClient) => {
           if (err) {
               return reject(err)
           }
@@ -68,11 +68,11 @@ export class NestjsMdbLibService implements OnModuleInit {
         this.cliMap[cliKey] = await this.getCli(cliItem.url)
       } else {
         console.log('regester option no has ' + cliKey )
-        return 
+        return
       }
     }
 
-    if (currentDb) { 
+    if (currentDb) {
       return currentDb
     } else {
       const cli =  this.cliMap[cliKey]
