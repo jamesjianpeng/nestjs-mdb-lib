@@ -1,8 +1,9 @@
 # nestjs-mdb-lib
 nestjs mongodb 封装库
+主要解决在一个 nestjs 项目中需要连接多个 mongodb 数据库
 
 ## 使用
-- ![example](https://github.com/jamesjianpeng/nestjs-mdb-lib/tree/master/example/test)
+- [example](https://github.com/jamesjianpeng/nestjs-mdb-lib/tree/master/example/test)
 
 - curd.moudle.ts
 
