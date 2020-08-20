@@ -45,7 +45,7 @@ let NestjsMdbLibService = class NestjsMdbLibService {
     }
     getCli(url) {
         return new Promise((resolve, reject) => {
-            mongodb_1.MongoClient.connect(url, { useNewUrlParser: true, poolSize: 30 }, (err, cli) => {
+            mongodb_1.MongoClient.connect(url, { useNewUrlParser: true, poolSize: 30, useUnifiedTopology: true }, (err, cli) => {
                 if (err) {
                     return reject(err);
                 }
