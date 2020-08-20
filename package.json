@@ -9,8 +9,7 @@
     "patch": "npm version patch",
     "publish": "npm publish --access=public",
     "git:commit:build": "git add . && git commit -m 'build' && git push",
-    "git:push:version": "git push",
-    "deploy": "npm run build && npm run git:commit:build && npm run patch && npm run publish && npm run git:push:version"
+    "deploy": "npm run build && npm run git:commit:build && npm run patch && npm run publish"
   },
   "repository": {
     "type": "git",
