@@ -2,7 +2,7 @@
 nestjs mongodb 封装库
 
 ## 使用
-- ![example]()
+- ![example](https://github.com/jamesjianpeng/nestjs-mdb-lib/tree/master/example/test)
 
 - curd.moudle.ts
 
