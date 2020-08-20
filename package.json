@@ -1,7 +1,7 @@
 {
   "name": "@smartblog/nestjs-mdb-lib",
   "version": "1.0.15",
-  "description": "nestjs mongodb",
+  "description": "nestjs mongodb server",
   "main": "./dist",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
