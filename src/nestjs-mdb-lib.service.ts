@@ -111,13 +111,23 @@ export class NestjsMdbLibService implements OnModuleInit {
     return Db
   }
 
-  async getCol (data: IColOption): Promise<Collection> {
+  /**
+   * @description 获取某个 collection
+   * @param {IColOption} data
+   * @returns {Promise<Collection|undefined>}
+   */
+  async getCol (data: IColOption): Promise<Collection|undefined> {
     const {db, col, cliKey } = data
-    let currentDb = this.dbMap[`${cliKey}_${db}`]
+    let collection: Collection | undefined
+    let currentDb: MongoClient | undefined = this.dbMap[`${cliKey}_${db}`]
     if (!currentDb) {
       currentDb = await this.getDb(cliKey, db)
     }
-    return await currentDb.collection(col)
+    if (currentDb) {
+
+      collection = await currentDb.collection(col)
+    }
+    return collection
 
   }
 }
