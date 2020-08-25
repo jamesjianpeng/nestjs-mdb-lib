@@ -36,7 +36,7 @@ export class NestjsMdbLibService implements OnModuleInit {
     return 'hello, nestjs mdb lib !'
   }
 
-  async getClis () {
+  async getClis (): Promise<ICliMap> {
     const clis: Array<Promise<ICli>> = this.options.map(async ({ url, key }: IMdb): Promise<ICli> => {
       return  { key, url, cli: await this.getCli(url) }
     })
@@ -46,9 +46,34 @@ export class NestjsMdbLibService implements OnModuleInit {
       cliMap[key] = cli
     })
     this.cliMap = cliMap
+    return cliMap
   }
 
-  getCli (url): Promise<MongoClient> {
+  /**
+   * @description 通过 key 获取 mongo client
+   * @param {string} key 这个可以 是与 options 中的 key 对应
+   * @returns {Promise<MongoClient|undefined>} 返回对于的 MongoClient
+   */
+  async getCliByKey (key: string): Promise<MongoClient | undefined> {
+    let cli = this.cliMap[key]
+    if (!cli) {
+      const currentItem: IMdb = _.find(this.options, ({ key: k }: IMdb) => k === key)
+      if (currentItem) {
+        cli = await this.getCli(currentItem.url)
+        this.cliMap[key] = cli
+      } else {
+        console.error(`${key} is invaild key`)
+      }
+    }
+    return cli
+  }
+
+  /**
+   * @description 通过 url 的方式获取 MongoClient
+   * @param  {string} url mongodb://<user>:<password>@<ip>:<port>
+   * @returns {Promise<MongoClient>} 获取对应的 MongoClient
+   */
+  async getCli (url): Promise<MongoClient> {
     return new Promise((resolve, reject) => {
       MongoClient.connect(url, { useNewUrlParser: true, poolSize: 30, useUnifiedTopology: true }, (err: MongoError, cli: MongoClient) => {
           if (err) {
@@ -59,27 +84,31 @@ export class NestjsMdbLibService implements OnModuleInit {
     })
   }
 
-  async getDb (cliKey: string, db: string): Promise<Db> {
-    const currentDb = this.dbMap[`${cliKey}_${db}`]
-    const currentCli = this.cliMap[cliKey]
-    if (!currentCli) {
-      const cliItem = _.find(this.options, ({ key }) => key === cliKey) || { url: '' } // this.options.find(({ key }) => key === cliKey) || { url: '' }
-      if (cliItem.url) {
-        this.cliMap[cliKey] = await this.getCli(cliItem.url)
-      } else {
-        console.log('regester option no has ' + cliKey )
-        return
+  /**
+   * @description 根据 options 对应的 key 和 db name 获取对应的 db
+   * @param {string} cliKey  options 对应的 key
+   * @param {string} db db name
+   * @returns {Promise<Db|undefined>}
+   */
+  async getDb (cliKey: string, db: string): Promise<Db|undefined> {
+    let Db: Db | undefined = this.dbMap[`${cliKey}_${db}`]
+    if (!Db) {
+      let cli: MongoClient | undefined = this.cliMap[cliKey]
+      if (!cli) {
+        const cliItem: MongoClient | undefined = _.find(this.options, ({ key }) => key === cliKey) || { url: '' } // this.options.find(({ key }) => key === cliKey) || { url: '' }
+        if (cliItem) {
+          cli = await this.getCli(cliItem.url)
+          this.cliMap[cliKey] = cli
+        } else {
+          console.error('regester option no has ' + cliKey )
+        }
+      }
+      if (cli) {
+        Db = cli.db(db)
+        this.dbMap[`${cliKey}_${db}`] = Db
       }
     }
-
-    if (currentDb) {
-      return currentDb
-    } else {
-      const cli =  this.cliMap[cliKey]
-      const Db = cli.db(db)
-      this.dbMap[`${cliKey}_${db}`] = Db
-      return Db
-    }
+    return Db
   }
 
   async getCol (data: IColOption): Promise<Collection> {
