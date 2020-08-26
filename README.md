@@ -53,3 +53,12 @@ export class AppService {
   }
 }
 ```
+
+## API
+### getClis
+
+> 获取所有的 client
+
+### getCli
+
+> 获取某个 client

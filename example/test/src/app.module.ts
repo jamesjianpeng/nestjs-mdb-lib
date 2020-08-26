@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import settings from '../settings.json'
-import { NestjsMdbLibModule } from '@smartblog/nestjs-mdb-lib'
+import { NestjsMdbLibModule } from '../dist'
 
 @Module({
   imports: [

@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "ts-node-dev --respawn ./src/main.ts --watch ./src"
+    "start": "ts-node-dev ./src/main.ts --watch ./src"
   },
   "keywords": [],
   "author": "",
@@ -14,10 +14,12 @@
     "@nestjs/common": "^7.4.2",
     "@nestjs/core": "^7.4.2",
     "@nestjs/platform-express": "^7.4.2",
-    "@smartblog/nestjs-mdb-lib": "^1.0.13"
+    "@smartblog/nestjs-mdb-lib": "^1.0.13",
+    "mongodb": "^3.6.0",
+    "reflect-metadata": "^0.1.13",
+    "rxjs": "^6.6.2"
   },
   "devDependencies": {
-    "reflect-metadata": "^0.1.13",
     "ts-node-dev": "^1.0.0-pre.58",
     "typescript": "^3.9.7"
   }

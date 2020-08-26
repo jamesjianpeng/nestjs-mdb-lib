@@ -9,4 +9,8 @@ export class AppController {
   testMdb() {
     return this.appService.testMdb();
   }
+  @Get('/testDb')
+  testDb() {
+    return this.appService.testDb();
+  }
 }
