@@ -15,6 +15,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.NestjsMdbLibService = void 0;
 const common_1 = require("@nestjs/common");
 const mongodb_1 = require("mongodb");
 const constants_1 = require("./constants");
@@ -42,8 +43,23 @@ let NestjsMdbLibService = class NestjsMdbLibService {
             cliMap[key] = cli;
         });
         this.cliMap = cliMap;
+        return cliMap;
     }
-    getCli(url) {
+    async getCliByKey(key) {
+        let cli = this.cliMap[key];
+        if (!cli) {
+            const currentItem = lodash_1.default.find(this.options, ({ key: k }) => k === key);
+            if (currentItem) {
+                cli = await this.getCli(currentItem.url);
+                this.cliMap[key] = cli;
+            }
+            else {
+                console.error(`${key} is invaild key`);
+            }
+        }
+        return cli;
+    }
+    async getCli(url) {
         return new Promise((resolve, reject) => {
             mongodb_1.MongoClient.connect(url, { useNewUrlParser: true, poolSize: 30, useUnifiedTopology: true }, (err, cli) => {
                 if (err) {
@@ -54,35 +70,37 @@ let NestjsMdbLibService = class NestjsMdbLibService {
         });
     }
     async getDb(cliKey, db) {
-        const currentDb = this.dbMap[`${cliKey}_${db}`];
-        const currentCli = this.cliMap[cliKey];
-        if (!currentCli) {
-            const cliItem = lodash_1.default.find(this.options, ({ key }) => key === cliKey) || { url: '' };
-            if (cliItem.url) {
-                this.cliMap[cliKey] = await this.getCli(cliItem.url);
+        let Db = this.dbMap[`${cliKey}_${db}`];
+        if (!Db) {
+            let cli = this.cliMap[cliKey];
+            if (!cli) {
+                const cliItem = lodash_1.default.find(this.options, ({ key }) => key === cliKey) || { url: '' };
+                if (cliItem) {
+                    cli = await this.getCli(cliItem.url);
+                    this.cliMap[cliKey] = cli;
+                }
+                else {
+                    console.error('regester option no has ' + cliKey);
+                }
             }
-            else {
-                console.log('regester option no has ' + cliKey);
-                return;
+            if (cli) {
+                Db = cli.db(db);
+                this.dbMap[`${cliKey}_${db}`] = Db;
             }
         }
-        if (currentDb) {
-            return currentDb;
-        }
-        else {
-            const cli = this.cliMap[cliKey];
-            const Db = cli.db(db);
-            this.dbMap[`${cliKey}_${db}`] = Db;
-            return Db;
-        }
+        return Db;
     }
     async getCol(data) {
         const { db, col, cliKey } = data;
+        let collection;
         let currentDb = this.dbMap[`${cliKey}_${db}`];
         if (!currentDb) {
             currentDb = await this.getDb(cliKey, db);
         }
-        return await currentDb.collection(col);
+        if (currentDb) {
+            collection = await currentDb.collection(col);
+        }
+        return collection;
     }
 };
 NestjsMdbLibService = __decorate([
