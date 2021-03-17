@@ -1,5 +1,5 @@
 {
-  "name": "nestjsMdbLib",
+  "name": "nestjsmdblib",
   "version": "1.0.23",
   "description": "nestjs mongodb server",
   "main": "./dist",
