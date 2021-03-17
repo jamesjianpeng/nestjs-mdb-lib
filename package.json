@@ -1,5 +1,5 @@
 {
-  "name": "@smartblog/nestjs-mdb-lib",
+  "name": "nestjs-mdb-lib",
   "version": "1.0.23",
   "description": "nestjs mongodb server",
   "main": "./dist",
@@ -9,7 +9,7 @@
     "patch": "npm version patch",
     "publish": "npm publish --access=public",
     "git:commit:build": "npm run build && git add . && git commit -m 'build' && git push",
-    "deploy": "npm run patch && npm run publish"
+    "deploy": "npm run publish"
   },
   "repository": {
     "type": "git",
