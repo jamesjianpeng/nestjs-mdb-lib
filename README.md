@@ -62,3 +62,7 @@ export class AppService {
 ### getCli
 
 > 获取某个 client
+
+## getDb
+
+> 获取 某个数据库
