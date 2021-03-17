@@ -1,6 +1,6 @@
 {
   "name": "@smartblog/nestjs-mdb-lib",
-  "version": "1.0.23",
+  "version": "1.0.22",
   "description": "nestjs mongodb server",
   "main": "./dist",
   "scripts": {
@@ -8,8 +8,8 @@
     "build": "rimraf ./dist && tsc",
     "patch": "npm version patch",
     "publish": "npm publish --access=public",
-    "git:commit:build": "npm run build && git add . && git commit -m 'build' && git push && npm run patch",
-    "deploy": "npm run publish"
+    "git:commit:build": "npm run build && git add . && git commit -m 'build' && git push",
+    "deploy": "npm run patch && npm run publish"
   },
   "repository": {
     "type": "git",
