@@ -1,5 +1,5 @@
 {
-  "name": "nestjsmdblib",
+  "name": "@dajianjian/nestjsmdblib",
   "version": "1.0.23",
   "description": "nestjs mongodb server",
   "main": "./dist",
@@ -35,5 +35,8 @@
   },
   "devDependencies": {
     "rimraf": "^3.0.2"
+  },
+  "directories": {
+    "example": "example"
   }
 }
