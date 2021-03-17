@@ -1,6 +1,6 @@
 {
   "name": "@dajianjian/nestjsmdblib",
-  "version": "1.0.23",
+  "version": "1.0.25",
   "description": "nestjs mongodb server",
   "main": "./dist",
   "scripts": {
